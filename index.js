@@ -38,6 +38,7 @@ class FlowFieldEffect {
     constructor(ctx, width, height) {
         this.#ctx = ctx;
         this.#ctx.strokeStyle = '#ffffff';
+        this.#ctx.lineWidth = 5;
         this.#width = width;
         this.#height = height;
         this.angle = 0;
@@ -53,7 +54,7 @@ class FlowFieldEffect {
 
     animate() {
         this.angle += .1;
-        this.#ctx.clearRect(0, 0, this.#width, this.#height);
+        // this.#ctx.clearRect(0, 0, this.#width, this.#height);
         this.#draw(this.#width / 2, this.#height / 2);
         // call animate fn every frame
         flowFieldAnimation = requestAnimationFrame(this.animate.bind(this));
