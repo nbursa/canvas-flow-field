@@ -90,7 +90,7 @@ class FlowFieldEffect {
             }
             for(let y = 0; y < this.#height; y += this.cellSize) {
                 for(let x = 0; x < this.#width; x += this.cellSize) {
-                    const angle = (Math.cos(x * .005) + Math.sin(y * .005)) * this.radius;
+                    const angle = (Math.cos(x * .009) + Math.sin(y * .009)) * this.radius;
                     this.#drawLine(angle, x, y);
                 }
             }
