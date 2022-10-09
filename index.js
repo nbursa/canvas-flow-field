@@ -65,7 +65,7 @@ class FlowFieldEffect {
         const length = 200;
         this.#ctx.beginPath();
         this.#ctx.moveTo(x, y);
-        this.#ctx.lineTo(x + angle * 100, y + angle * 100);
+        this.#ctx.lineTo(x + Math.cos(angle) * 20, y + Math.sin(angle) * 20);
         this.#ctx.stroke();
     }
 
@@ -76,7 +76,7 @@ class FlowFieldEffect {
             this.#ctx.clearRect(0, 0, this.#width, this.#height);
             for(let y = 0; y < this.#height; y += this.cellSize) {
                 for(let x = 0; x < this.#width; x += this.cellSize) {
-                    const angle = Math.cos(x) + Math.sin(y);
+                    const angle = Math.cos(x * .01) + Math.sin(y * .01);
                     this.#drawLine(angle, x, y);
                 }
             }
