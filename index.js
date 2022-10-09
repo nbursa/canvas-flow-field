@@ -64,7 +64,15 @@ class FlowFieldEffect {
     }
 
     #drawLine(angle, x, y) {
-        const length = 15;
+        let positionX = x;
+        let positionY = y;
+        let dx = mouse.x - positionX;
+        let dy = mouse.y - positionY;
+        let distance = dx * dx + dy * dy;
+        if(distance > 600000) distance = 600000;
+        else if(distance < 50000) distance = 50000;
+        let length = distance / 20000;
+        // const length = 15;
         this.#ctx.beginPath();
         this.#ctx.moveTo(x, y);
         this.#ctx.lineTo(x + Math.cos(angle) * length, y + Math.sin(angle) * length);
@@ -82,7 +90,7 @@ class FlowFieldEffect {
             }
             for(let y = 0; y < this.#height; y += this.cellSize) {
                 for(let x = 0; x < this.#width; x += this.cellSize) {
-                    const angle = (Math.cos(x * .009) + Math.sin(y * .009)) * this.radius;
+                    const angle = (Math.cos(x * .005) + Math.sin(y * .005)) * this.radius;
                     this.#drawLine(angle, x, y);
                 }
             }
@@ -90,7 +98,6 @@ class FlowFieldEffect {
         } else {
             this.timer += deltaTime;
         }
-        // console.log(deltaTime);
         // call animate fn every frame
         flowFieldAnimation = requestAnimationFrame(this.animate.bind(this));
     }
